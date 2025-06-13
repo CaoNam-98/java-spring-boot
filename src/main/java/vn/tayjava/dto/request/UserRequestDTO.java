@@ -1,13 +1,30 @@
 package vn.tayjava.dto.request;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.*;
+import vn.tayjava.util.PhoneNumber;
 
-// implements Serializable để chuyển đổi từ json sang byte nhị phân và ngược lại
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+
 public class UserRequestDTO implements Serializable {
+    @NotBlank(message = "firstName must be not blank") // show message này ở terminal
     private String firstName;
+    @NotNull(message = "firstName must be not null")
     private String lastName;
+    @Email(message="email invalid format")
     private String email;
+//    @Pattern(regexp = "^\\d{10}$", message = "phone invalid format")
+    @PhoneNumber
     private String phone;
+    // Update code ngày 16/8/2024
+    @NotNull(message = "dateOfBirth must be not null")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    private Date dateOfBirth;
+
+    @NotEmpty // chỉ nhận ["s1"]
+    private List<String> permission;
 
     public UserRequestDTO(String firstName, String lastName, String email, String phone) {
         this.firstName = firstName;
@@ -46,5 +63,21 @@ public class UserRequestDTO implements Serializable {
 
     public String getPhone() {
         return phone;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public List<String> getPermission() {
+        return permission;
+    }
+
+    public void setPermission(List<String> permission) {
+        this.permission = permission;
     }
 }
