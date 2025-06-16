@@ -2,11 +2,13 @@ package vn.tayjava.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.*;
-import vn.tayjava.util.PhoneNumber;
+import vn.tayjava.util.*;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+import static vn.tayjava.util.Gender.*;
 
 public class UserRequestDTO implements Serializable {
     @NotBlank(message = "firstName must be not blank") // show message này ở terminal
@@ -22,6 +24,16 @@ public class UserRequestDTO implements Serializable {
     @NotNull(message = "dateOfBirth must be not null")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private Date dateOfBirth;
+
+    @EnumPattern(name="status", regexp="ACTIVE|INACTIVE|NONE")
+    private UserStatus status;
+
+    @GenderSubset(anyOf = {MALE, FEMALE, OTHER})
+    private Gender gender;
+
+    @NotNull(message = "type must be not null")
+    @EnumValue(name = "type", enumClass = UserType.class)
+    private String type;
 
     @NotEmpty // chỉ nhận ["s1"]
     private List<String> permission;
@@ -79,5 +91,17 @@ public class UserRequestDTO implements Serializable {
 
     public void setPermission(List<String> permission) {
         this.permission = permission;
+    }
+
+    public UserStatus getStatus() {
+        return status;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public String getType() {
+        return type;
     }
 }
