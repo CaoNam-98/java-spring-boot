@@ -1,4 +1,4 @@
-package vn.tayjava.dto.request;
+package vn.tayjava.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.*;
