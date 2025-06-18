@@ -19,7 +19,14 @@
 - Spring Boot 3.2.3
 - Maven 3.5+
 
-## Run application
-```bash
-$ ./mvnw spring-boot:run
-```
+---
+
+## Bài 6 - Handle Exception Trong Spring Boot
+ - [Tây Java](https://tayjava.vn)
+
+## Link Video
+- YouTube: [Bài 6 - Handle Exception Trong Spring Boot](https://youtu.be/_o_cKn1S4_U)
+
+## Lấy Source Code Về
+- git clone https://github.com/luongquoctay87/tayjava-sample-code.git
+- git checkout bai-6-handle-exception

@@ -1,7 +1,8 @@
-package vn.tayjava.util;
+package vn.tayjava.dto.validator;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+import vn.tayjava.util.Gender;
 
 import java.util.Arrays;
 

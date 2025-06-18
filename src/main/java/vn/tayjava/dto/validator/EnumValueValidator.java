@@ -1,4 +1,4 @@
-package vn.tayjava.util;
+package vn.tayjava.dto.validator;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class EnumValueValidator implements ConstraintValidator<EnumValue, CharSequence> {
-    private List acceptedValues;
+    private List<String> acceptedValues;
 
     @Override
     public void initialize(EnumValue enumValue) {
