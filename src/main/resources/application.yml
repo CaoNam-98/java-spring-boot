@@ -1,10 +1,12 @@
-spring:
-  application:
-    name: tay-java
+#spring:
+#  application:
+#    name: tay-java-app
+#  profiles:
+#    active: @spring.profiles.active@
 
-openapi:
-  service:
-    api-docs: api-service
-    server: http://localhost:8080
-    title: API Service
-    version: 1.0.0
+#openapi:
+#  service:
+#    api-docs: api-service
+#    server: http://localhost:${server.port}
+#    title: API Document
+#    version: 1.0.0
