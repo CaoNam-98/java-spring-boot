@@ -1,5 +1,7 @@
 package vn.tayjava.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import org.springframework.http.HttpStatus;
@@ -15,38 +17,45 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 @Validated
+@Tag(name = "User Controller")
 public class UserController {
 
+    @Operation(method = "POST", summary = "Add new user", description = "Send a request via this API to create new user")
     @PostMapping("/")
     public ResponseData<Integer> addUser(@Valid @RequestBody UserRequestDTO user) {
         System.out.println("Request add user " + user.getFirstName());
         return new ResponseData<>(HttpStatus.CREATED.value(), Translator.toLocale("user.add.success"), 1);
     }
 
+    @Operation(summary = "Update user", description = "Send a request via this API to update user")
     @PutMapping("/{userId}")
     public ResponseData<?> updateUser(@PathVariable @Min(1) int userId, @Valid @RequestBody UserRequestDTO user) {
         System.out.println("Request update userId=" + userId);
         return new ResponseData<>(HttpStatus.ACCEPTED.value(), Translator.toLocale("user.upd.success"));
     }
 
+    @Operation(summary = "Change status of user", description = "Send a request via this API to change status of user")
     @PatchMapping("/{userId}")
     public ResponseData<?> updateStatus(@Min(1) @PathVariable int userId, @RequestParam boolean status) {
         System.out.println("Request change status, userId=" + userId);
         return new ResponseData<>(HttpStatus.ACCEPTED.value(), Translator.toLocale("user.change.success"));
     }
 
+    @Operation(summary = "Delete user permanently", description = "Send a request via this API to delete user permanently")
     @DeleteMapping("/{userId}")
     public ResponseData<?> deleteUser(@PathVariable @Min(value = 1, message = "userId must be greater than 0") int userId) {
         System.out.println("Request delete userId=" + userId);
         return new ResponseData<>(HttpStatus.NO_CONTENT.value(), Translator.toLocale("user.del.success"));
     }
 
+    @Operation(summary = "Get user detail", description = "Send a request via this API to get user information")
     @GetMapping("/{userId}")
     public ResponseData<UserRequestDTO> getUser(@PathVariable @Min(1) int userId) {
         System.out.println("Request get user detail, userId=" + userId);
         return new ResponseData<>(HttpStatus.OK.value(), "user", new UserRequestDTO("Tay", "Java", "admin@tayjava.vn", "0123456789"));
     }
 
+    @Operation(summary = "Get list of users per pageNo", description = "Send a request via this API to get user list by pageNo and pageSize")
     @GetMapping("/list")
     public ResponseData<List<UserRequestDTO>> getAllUser(@RequestParam(defaultValue = "0", required = false) int pageNo,
                                                          @Min(10) @RequestParam(defaultValue = "20", required = false) int pageSize) {
