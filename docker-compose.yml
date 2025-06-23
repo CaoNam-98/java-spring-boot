@@ -1,0 +1,16 @@
+services:
+  api-service:
+    container_name: api-container-1
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      API_TITLE: API doc dev
+    ports:
+      - '8080:80'
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge

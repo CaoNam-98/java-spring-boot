@@ -2,7 +2,7 @@
 #  application:
 #    name: tay-java-app
 #  profiles:
-#    active: test
+#    active: dev
 
 #openapi:
 #  service:
